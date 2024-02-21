@@ -248,7 +248,7 @@ jobs:
 
       - name: Upload Release.unsigned related files
         uses: svenstaro/upload-release-action@v2
-        if: github.event_name == 'release'
+        if:  ${{ github.event_name == 'release' || true }}
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file_glob: true
@@ -257,14 +257,14 @@ jobs:
 
       - name: Upload extra package
         uses: svenstaro/upload-release-action@v2
-        if: github.event_name == 'release'
+        if:  ${{ github.event_name == 'release' || true }}
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file_glob: true
           file: build_artifacts/v2ray-extra.zip
           tag: ${{ github.ref }}
   buildContainer:
-    if: github.event_name == 'release'
+    if:  ${{ github.event_name == 'release' || true }}
     needs: signature
     strategy:
       fail-fast: false
