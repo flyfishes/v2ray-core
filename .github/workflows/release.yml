@@ -212,6 +212,9 @@ jobs:
           mv ./.temp/* .
           ls -lah --recursive
           echo "shasum1"
+          for zip in $(ls *.zip); do
+              ls ${zip}
+          done
           {            
             go run github.com/v2fly/V2BuildAssist/v2buildutil gen version $(git describe --tags $(git rev-list --tags --max-count=1))
             go run github.com/v2fly/V2BuildAssist/v2buildutil gen project "v2fly"
