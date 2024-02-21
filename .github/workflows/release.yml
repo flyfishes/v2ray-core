@@ -211,7 +211,6 @@ jobs:
           rmdir ./*/
           mv ./.temp/* .
           ls -lah --recursive
-          ls -lah github.com/v2fly/V2BuildAssist/
           echo "shasum1"
           {            
             go run github.com/v2fly/V2BuildAssist/v2buildutil gen version $(git describe --tags $(git rev-list --tags --max-count=1))
