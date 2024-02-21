@@ -211,16 +211,15 @@ jobs:
           rmdir ./*/
           mv ./.temp/* .
           ls -lah --recursive
+          ls -lah github.com/v2fly/V2BuildAssist/
           echo "shasum1"
           {            
             go run github.com/v2fly/V2BuildAssist/v2buildutil gen version $(git describe --tags $(git rev-list --tags --max-count=1))
             go run github.com/v2fly/V2BuildAssist/v2buildutil gen project "v2fly"
-            echo "shasum2"
             for zip in $(ls *.zip); do
               go run github.com/v2fly/V2BuildAssist/v2buildutil gen file ${zip}
             done
-            echo "shasum3"
-          } >Release.unsigned.unsorted
+           } >Release.unsigned.unsorted
           echo "shasum4"
           go run github.com/v2fly/V2BuildAssist/v2buildutil gen sort < Release.unsigned.unsorted > Release.unsigned
           echo "shasum5"
